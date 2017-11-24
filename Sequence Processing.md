@@ -89,7 +89,11 @@ make_phylogeny.py -i alignment/filtered_alignment/full_rep_set_aligned_pfiltered
 ```
 biom summarize-table -i otu_table_tax_filt.biom -o otu_table_summary.txt
 
-single_rarefaction.py -d 27000 -o single_rare.biom -i otu_table_tax_filt.biom
+#this sample is low at 169 sequences: 062615Wet1D. FIlter it
+
+filter_samples_from_otu_table.py -i otu_table_tax_filt.biom -o otu_table_tax_filt2.biom -n 10000
+
+single_rarefaction.py -d 16618 -o single_rare.biom -i otu_table_tax_filt2.biom
 ```
 
 ## Calculate alpha and beta diversity
