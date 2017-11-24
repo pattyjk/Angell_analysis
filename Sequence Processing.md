@@ -1,6 +1,6 @@
-All analyses were performed in USEARCH v. 10.0.240 with the UPARSE OTU picking method. Subsequent analyses were performed in QIIME v. 1.8. 
+# All analyses were performed in USEARCH v. 10.0.240 with the UPARSE OTU picking method. Subsequent analyses were performed in QIIME v. 1.8. 
 
-Merge Paired End Reads
+## Merge Paired End Reads
 ```
 #decompress the reads
 gunzip *.gz
