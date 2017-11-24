@@ -44,10 +44,14 @@ usearch -cluster_otus mergedfastq/sorted_failed_closed.fq -minsize 2 -otus merge
 cat mergedfastq/closed_reference.fasta mergedfastq/denovo_otus.fasta > mergedfastq/full_rep_set.fna
 ```
 
-## Map rep_set back to pre-dereplicated sequences and make OTU tables (.txt and .biom)
+## Map rep_set back to pre-dereplicated sequences and make OTU tables
 ```
 usearch -usearch_global mergedfastq/merged.fq -db mergedfastq/full_rep_set.fna  -strand plus -id 0.97 -uc OTU_map.uc -otutabout OTU_table.txt -biomout OTU_jsn.biom
 ```
+
+
+
+
 
 # Switch to QIIME
 
