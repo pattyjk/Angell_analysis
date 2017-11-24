@@ -55,7 +55,7 @@ usearch -usearch_global mergedfastq/merged.fq -db mergedfastq/full_rep_set.fna  
 
 # Switch to QIIME
 
-## Assign taxonomy to GreenGenes v 13.8
+## Assign taxonomy to GreenGenes v 13.8 and UCLUST
 ```
 assign_taxonomy.py -i full_rep_set.fna -o taxonomy -r /mnt/home/kearnspa/gg_13_8_otus/rep_set/97_otus.fasta -t /mnt/home/kearnspa/gg_13_8_otus/taxonomy/97_otu_taxonomy.txt
 ```
