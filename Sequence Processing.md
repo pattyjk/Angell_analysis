@@ -94,7 +94,12 @@ single_rarefaction.py -d 27000 -o single_rare.biom -i otu_table_tax_filt.biom
 
 ## Calculate alpha and beta diversity
 ```
-beta_diversity.py -m bray_curtis,unweighted_unifrac,weighted_unifrac -i otu_table_tax_filt.biom -o beta_div -t rep_set.tre
+beta_diversity.py -m bray_curtis,unweighted_unifrac,weighted_unifrac -i single_rare.biom -o beta_div -t rep_set.tre
 
 alpha_diversity.py -m PD_whole_tree,shannon -i single_rare.biom -o alpha -t rep_set.tre
+```
+
+## Summarize taxonomy data
+```
+summarize_taxa.py -i otu_table_tax_filt.biom -o taxa_sum
 ```
