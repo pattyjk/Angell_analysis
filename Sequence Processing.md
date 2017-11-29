@@ -14,7 +14,7 @@ usearch -fastq_mergepairs *R1*.fastq -relabel @ -fastq_maxdiffs 10 -fastqout mer
 
 ## Dereplicate sequences
 ```
-usearch -derep_fulllength mergedfastq/merged.fq -fastqout mergedfastq/uniques_combined_merged.fastq -sizeout
+./usearch64 -fastx_uniques mergedfastq/merged.fq -fastqout mergedfastq/uniques_combined_merged.fastq -sizeout
 ```
 
 ## Remove Singeltons
