@@ -1,6 +1,6 @@
 # Analysis of 16S Illumina sequencing data
 
-All analyses were performed in USEARCH v. 10.0.240 with the UPARSE OTU picking method. Subsequent analyses were performed in QIIME v. 1.8. 
+All analyses were performed in USEARCH v. 10.0.240 (64-bit) with the UPARSE OTU picking method. Subsequent analyses were performed in QIIME v. 1.8. 
 
 ## Merge Paired End Reads
 ```
@@ -9,7 +9,7 @@ gunzip *.gz
 
 mkdir mergedfastq
 
-usearch -fastq_mergepairs *R1*.fastq -relabel @ -fastq_maxdiffs 10 -fastqout mergedfastq/merged.fq -fastq_merge_maxee 1.0 -fastq_minmergelen 250 -fastq_maxmergelen 300
+./usearch64 -fastq_mergepairs *R1*.fastq -relabel @ -fastq_maxdiffs 10 -fastqout mergedfastq/merged.fq -fastq_merge_maxee 1.0 -fastq_minmergelen 250 -fastq_maxmergelen 300
 ```
 
 ## Dereplicate sequences
@@ -19,17 +19,17 @@ usearch -fastq_mergepairs *R1*.fastq -relabel @ -fastq_maxdiffs 10 -fastqout mer
 
 ## Remove Singeltons
 ```
-usearch -sortbysize mergedfastq/uniques_combined_merged.fastq -fastqout mergedfastq/nosigs_uniques_combined_merged.fastq -minsize 2
+./usearch64 -sortbysize mergedfastq/uniques_combined_merged.fastq -fastqout mergedfastq/nosigs_uniques_combined_merged.fastq -minsize 2
 ```
 
 ## Precluster Sequences
 ```
-usearch -cluster_fast mergedfastq/nosigs_uniques_combined_merged.fastq -centroids_fastq mergedfastq/denoised_nosigs_uniques_combined_merged.fastq -id 0.9 -maxdiffs 5 -abskew 10 -sizein -sizeout -sort size
+./usearch64 -cluster_fast mergedfastq/nosigs_uniques_combined_merged.fastq -centroids_fastq mergedfastq/denoised_nosigs_uniques_combined_merged.fastq -id 0.9 -maxdiffs 5 -abskew 10 -sizein -sizeout -sort size
 ```
 
 ## Reference-based OTU picking against the 13.8 version of GreenGenes
 ```
-usearch -usearch_global mergedfastq/denoised_nosigs_uniques_combined_merged.fastq -id 0.97 -db /mnt/home/kearnspa/gg_13_8_otus/rep_set/97_otus.fasta  -strand plus -uc mergedfastq/ref_seqs.uc -dbmatched mergedfastq/closed_reference.fasta -notmatchedfq mergedfastq/failed_closed.fq
+./usearch64 -usearch_global mergedfastq/denoised_nosigs_uniques_combined_merged.fastq -id 0.97 -db /mnt/home/kearnspa/gg_13_8_otus/rep_set/97_otus.fasta  -strand plus -uc mergedfastq/ref_seqs.uc -dbmatched mergedfastq/closed_reference.fasta -notmatchedfq mergedfastq/failed_closed.fq
 ```
 
 ## Sort by size and then de novo OTU picking on sequences that failed to hit GreenGenes
