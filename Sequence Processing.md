@@ -103,7 +103,7 @@ beta_diversity.py -m bray_curtis,unweighted_unifrac,weighted_unifrac -i single_r
 alpha_diversity.py -m PD_whole_tree,shannon -i single_rare.biom -o alpha -t rep_set.tre
 ```
 
-## Summarize taxonomy data
+## Summarize taxonomic data
 ```
 summarize_taxa.py -i otu_table_tax_filt.biom -o taxa_sum
 ```
